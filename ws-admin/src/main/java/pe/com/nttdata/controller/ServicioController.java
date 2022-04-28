@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.log4j.Log4j2;
 import pe.com.nttdata.model.CustomerResponse;
-import pe.com.nttdata.model.Historico;
 import pe.com.nttdata.model.Product;
 import pe.com.nttdata.model.ProductResponse;
 import pe.com.nttdata.servive.OperacionesService;
@@ -34,16 +33,13 @@ public class ServicioController {
 
 	
 	@PostMapping
-	public ProductResponse getCustomerOpreracion(@RequestBody Product product) {
+	public Mono<ProductResponse>  getCustomerOpreracion(@RequestBody Product product) {
 		log.info("insertar productos:======================: {}",product.toString());
-		return  this.customerService.save(product);
+		ProductResponse  response=this.customerService.save(product);
+		return  Mono.just(response);
 	}
 	
-	@PostMapping("/save")
-	public Historico historico(@RequestBody Historico reqHistorico) {
-		log.info("insertar productos:======================: {}",reqHistorico.toString());
-		return  this.customerService.save(reqHistorico);
-	}
+	
 
 
 }

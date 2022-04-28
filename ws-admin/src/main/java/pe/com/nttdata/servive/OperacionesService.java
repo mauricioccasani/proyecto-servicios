@@ -1,9 +1,7 @@
 package pe.com.nttdata.servive;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +63,6 @@ public class OperacionesService {
 		ProductResponse response=new ProductResponse();
 		Product oProduct = new Product();
 		ObjectMapper mapper = new ObjectMapper();
-		Historico historico=new Historico();
 		
 		List<TypeProduct> lstTypeProduct = this.productClient.getAllTypeProduct();
 		log.info("Tamanio de lista TypeProduct: {}", lstTypeProduct.size());
@@ -83,19 +80,11 @@ public class OperacionesService {
 				oProduct.setAction(product.getAction());
 				if (product.getAction().equalsIgnoreCase(Constantes.DEPOSITO)) {
 					oProduct.setAmount(pr.getAmount() + product.getAmount());
-					historico.setMontoActual(oProduct.getAmount());
-					historico.setIdOpreracion(oProduct.getId());
-					LocalDateTime date=LocalDateTime.now();
-					String fecha=date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy:mm:ss.SSS"));
-					historico.setFechaOperacion(fecha);
-					historico.setIdCliente(oProduct.getIdCustomer());
-					historico.setLugarOperacion("001");
-					Gson gson=new Gson();
-					gson.toJson(historico);
-					this.historicoClientInf.save(historico);
+					this.historicoClientInf.save(this.setHistoric(oProduct));
 				} else if (product.getAction().equalsIgnoreCase(Constantes.RETIRO)) {
 					if (pr.getAmount()>0) {
 						oProduct.setAmount(pr.getAmount() - product.getAmount());
+						this.historicoClientInf.save(this.setHistoric(oProduct));
 					}else {
 						response.setCodRequest("-1");
 						response.setMsgRequest("Salda insuficiente");
@@ -117,6 +106,19 @@ public class OperacionesService {
 		response.setProduct(products);
 		return response;
 
+	}
+	
+	private Historico setHistoric(Product product) {
+		Historico historico=new Historico();
+		historico.setMontoActual(product.getAmount());
+		historico.setIdOpreracion(product.getId());
+		LocalDateTime date=LocalDateTime.now();
+		String fecha=date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy:mm:ss.SSS"));
+		historico.setFechaOperacion(fecha);
+		historico.setIdCliente(product.getIdCustomer());
+		historico.setLugarOperacion("001");
+		return historico;
+		
 	}
 
 }

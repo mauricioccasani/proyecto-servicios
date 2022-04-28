@@ -12,5 +12,5 @@ spring:
           uri: https://github.com/mauricioccasani/proyecto-servicios.git
 #          username: 
 #          password: 
-          search-paths: config-data
+          search-paths: admin-config-data
           default-label: "master"
