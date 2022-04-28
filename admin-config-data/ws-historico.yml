@@ -1,0 +1,13 @@
+server:
+  port: 8087
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: bootcamp
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8881/eureka/      
