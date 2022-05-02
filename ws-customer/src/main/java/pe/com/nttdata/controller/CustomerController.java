@@ -18,26 +18,30 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/api/v1")
 public class CustomerController {
-	@Autowired
+	@Autowired // Inyeccion de dependencias
 	private CustomerServiceInf customerService;
 	
 	@PostMapping
+	// Crear empleado
 	public Mono<Customer> create(@RequestBody Customer customer) {
 		return this.customerService.save(customer);
 	}
 	
 	@GetMapping
+	// Listar empleados
 	public Flux<Customer> getAll() {
 		return customerService.findAll();
 	}
 	
 	@GetMapping("/{id}")
+	// Buscar por id
 	public Mono<Customer> findByIds(@PathVariable String id) {
 		return customerService.findById(id);
 	}
 	
 	
 	@PutMapping("/{id}")
+	// Actualizar empleado
 	public Mono<Customer> update(@PathVariable String id,  @RequestBody Customer customer) {
 		return this.customerService.findById(id)
 				.flatMap(c->{
@@ -50,6 +54,7 @@ public class CustomerController {
 	
 	
 	@DeleteMapping("/{id}")
+	// Borrar empleado
 	public Mono<Void> delete(@PathVariable String id) {
 		return this.customerService.findById(id)
 				.flatMap(c->this.customerService.delete(c));
