@@ -1,4 +1,3 @@
-
 server:
   port: 8882
 eureka:
@@ -24,6 +23,6 @@ spring:
         - id: ws-customer
           uri: http://localhost:8083/customers
           predicates:
-            - Path=/customers/**   
+            - Path=/customers/**
   #application:
   #  name: registry-service          
