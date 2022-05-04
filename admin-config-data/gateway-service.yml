@@ -33,12 +33,12 @@ spring:
           predicates:
             - Path=/type-products/**
         - id: ws-type-customer
-          uri: http://localhost:8082/type-products
+          uri: http://localhost:8082/type-customers
           predicates:
-            - Path=/type-products/**
+            - Path=/type-customers/**
         - id: ws-admin
           uri: http://localhost:8085/servicios
           predicates:
-            - Path=/servicios/**    
+            - Path=/servicios/** 
   #application:
   #  name: registry-service          
