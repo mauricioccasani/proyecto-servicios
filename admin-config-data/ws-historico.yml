@@ -4,9 +4,7 @@ server:
 spring:
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: bootcamp
+      uri: mongodb://localhost:27017/bootcamp
 eureka:
   client:
     service-url:
