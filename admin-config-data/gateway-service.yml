@@ -18,9 +18,9 @@ spring:
           enabled: true
       routes:
         - id: ws-historico
-          uri: http://localhost:8087/api/v1/historicos
+          uri: http://localhost:8087/historicos
 #          uri: lb//ws-producto
           predicates:
-            - Path=/api/v1/historicos/**
+            - Path=/historicos/**
   #application:
   #  name: registry-service          
