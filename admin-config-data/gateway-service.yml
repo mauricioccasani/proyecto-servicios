@@ -27,6 +27,6 @@ spring:
         - id: ws-product
           uri: http://localhost:8084/products
           predicates:
-            - Path=/products/**    
+            - Path=/products/**
   #application:
   #  name: registry-service          
