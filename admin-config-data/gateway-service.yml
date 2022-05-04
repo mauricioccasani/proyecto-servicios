@@ -24,5 +24,9 @@ spring:
           uri: http://localhost:8083/customers
           predicates:
             - Path=/customers/**
+        - id: ws-product
+          uri: http://localhost:8084/products
+          predicates:
+            - Path=/products/**    
   #application:
   #  name: registry-service          
