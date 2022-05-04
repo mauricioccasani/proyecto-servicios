@@ -14,7 +14,7 @@ public class TypeCustomerClientImpl implements TypeCustomerClientInf{
 	private RestTemplate restTemplate; 
 	@Override
 	public List<TypeCustomer> searchByIdCustomer(String idCustomer) {
-		return this.restTemplate.getForObject("http://localhost:8082/api/v1/type-customers/buscar/"+idCustomer, List.class);
+		return this.restTemplate.getForObject("http://localhost:8082/type-customers/buscar/"+idCustomer, List.class);
 	}
 
 }

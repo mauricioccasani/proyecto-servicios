@@ -13,19 +13,19 @@ public class TypeCustomerServiceImpl implements  TypeCustomerServiceInf {
 	private TypeCustomerRepository repository;
 
 	@Override
-	public Mono<TypeCustomer> add(TypeCustomer typeCustomer) {
+	public Mono<TypeCustomer> addTypeCustomer(TypeCustomer typeCustomer) {
 		return this.repository.save(typeCustomer);
 	}
 
 	@Override
-	public Flux<TypeCustomer> gelAll() {
+	public Flux<TypeCustomer> gelAllTypeCustomer() {
 		return this.repository.findAll();
 	}
 
 	
 
 	@Override
-	public Flux<TypeCustomer> buscar(String idCustomer) {
+	public Flux<TypeCustomer> findAllByIdCustomer(String idCustomer) {
 		return this.repository.findAllByIdCustomer(idCustomer)
 				.filter(c->c.getStatus().trim().equals("activo"));
 	}

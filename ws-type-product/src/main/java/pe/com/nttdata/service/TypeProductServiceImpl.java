@@ -13,9 +13,9 @@ public class TypeProductServiceImpl implements  TypeProductServiceInf {
 	private TypeProductRepository typeProductRepository;
 
 	@Override
-	public Mono<TypeProduct> save(TypeProduct typeProduct) {
+	public Mono<TypeProduct> save(Mono<TypeProduct> typeProduct) {
 		
-		return this.typeProductRepository.save(typeProduct);
+		return typeProduct.flatMap(this.typeProductRepository::save);
 	}
 
 	@Override

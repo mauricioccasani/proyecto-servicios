@@ -13,9 +13,9 @@ public class ProductServiceImpl implements  ProductServiceInf {
 	private ProductRepository productRepository;
 
 	@Override
-	public Mono<Product> save(Product product) {
+	public Mono<Product> save( Mono<Product> product) {
+		return product.flatMap(this.productRepository::save);
 		
-		return this.productRepository.save(product);
 	}
 
 	@Override
@@ -35,6 +35,11 @@ public class ProductServiceImpl implements  ProductServiceInf {
 	@Override
 	public Mono<Product> findByIdCustomer(String id) {
 		return this.productRepository.findByIdCustomer(id);
+	}
+
+	@Override
+	public Flux<Product> findTop2ByOrderByIdCustomerDesc(String idCustomer) {
+		return this.productRepository.findTop2ByOrderByIdCustomerDesc(idCustomer);
 	}
 	
 

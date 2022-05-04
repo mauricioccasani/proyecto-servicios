@@ -14,27 +14,27 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/api/v1/type-customers")
+@RequestMapping("/type-customers")
 public class TypeCustomerController {
 	@Autowired
 	private TypeCustomerServiceInf serviceInf;
 	
 	@PostMapping
-	public Mono<TypeCustomer> add(@RequestBody TypeCustomer typeCustomer) {
-		return this.serviceInf.add(typeCustomer);
+	public Mono<TypeCustomer> addTypeCustomer(@RequestBody TypeCustomer typeCustomer) {
+		return this.serviceInf.addTypeCustomer(typeCustomer);
 	}
 	
 	@GetMapping
-	public Flux<TypeCustomer> listar() {
-		return serviceInf.gelAll();
+	public Flux<TypeCustomer> getTypeCustomer() {
+		return serviceInf.gelAllTypeCustomer();
 	}
 
 	
 	
 	
 	@GetMapping("/buscar/{idCustomer}")
-	public Flux<TypeCustomer> buscar(@PathVariable String idCustomer) {
+	public Flux<TypeCustomer> findAllByIdCustomer(@PathVariable String idCustomer) {
 	
-		return serviceInf.buscar(idCustomer);
+		return serviceInf.findAllByIdCustomer(idCustomer);
 	}
 }

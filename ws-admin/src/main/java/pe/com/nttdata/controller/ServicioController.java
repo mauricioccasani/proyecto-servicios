@@ -16,7 +16,7 @@ import pe.com.nttdata.servive.OperacionesService;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/api/servicios")
+@RequestMapping("/servicios")
 @Log4j2
 public class ServicioController {
 	

@@ -12,7 +12,7 @@ public class CustomerClientImpl implements CustomerClientInf{
 	private RestTemplate restTemplate; 
 	@Override
 	public Customer findById(String id) {
-		return this.restTemplate.getForObject("http://localhost:8083/api/v1/"+id, Customer.class);
+		return this.restTemplate.getForObject("http://localhost:8882/customers"+id, Customer.class);
 	}
 
 }

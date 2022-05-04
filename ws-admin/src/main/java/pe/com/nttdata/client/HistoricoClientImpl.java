@@ -33,7 +33,7 @@ public class HistoricoClientImpl implements HistoricoClientInf{
 		ObjectMapper objectMapper = new ObjectMapper();
 		String responseJson = null;
 
-		String url = "http://localhost:8087/api/v1/historicos";
+		String url = "http://localhost:8087/historicos";
 		Integer timeoutConexion= 2;
 		Integer timeoutEjecucion = 3;
 
@@ -44,8 +44,8 @@ public class HistoricoClientImpl implements HistoricoClientInf{
 	
 			
 
-			log.info("URL para modificar orden motor de pagos: " + url);
-			log.info("Tipo: " + HttpMethod.POST);
+			log.info("URL historicio: {}",url);
+			log.info("Tipo: {}", HttpMethod.POST);
 			Gson gson = new Gson();
 			String requesGson= gson.toJson(historico);
 			log.info("reques: {}",requesGson);
@@ -55,8 +55,8 @@ public class HistoricoClientImpl implements HistoricoClientInf{
 //			httpRequestFactory.setConnectTimeout(timeoutConexion);
 //			httpRequestFactory.setReadTimeout(timeoutEjecucion);
 
-			log.info("Timeout conexion (ms): " + timeoutConexion);
-			log.info("Timeout ejecucion (ms): " + timeoutEjecucion);
+			log.info("Timeout conexion (ms): {}" , timeoutConexion);
+			log.info("Timeout ejecucion (ms): {}" , timeoutEjecucion);
 
 		
 			RestTemplate restTemplate = new RestTemplate(httpRequestFactory);
@@ -71,16 +71,16 @@ public class HistoricoClientImpl implements HistoricoClientInf{
 		}catch (HttpClientErrorException e) {
 			e.printStackTrace();
 		
-			log.error("Codigo Error:"+ e.getStatusCode());
-			log.error("Mensaje Error:"+ e.getResponseBodyAsString());
+			log.error("Codigo Error: {}", e.getStatusCode());
+			log.error("Mensaje Error: {}", e.getResponseBodyAsString());
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.error("Error en modificar: " + e.getMessage(), e);
+			log.error("Error en modificar: {} {}" , e.getMessage(), e);
 
 		} finally {
-			log.info("Datos de Salida:\n " + responseJson);
-			log.info("Tiempo invocacion: " + (System.currentTimeMillis() - tiempoInicio)
-					+ " milisegundos");
+			log.info("Datos de Salida:\n {}" , responseJson);
+			log.info("Tiempo invocacion: {} {}" , (System.currentTimeMillis() - tiempoInicio)
+					, " milisegundos");
 		}
 
 		return response;

@@ -5,10 +5,10 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface TypeCustomerServiceInf {
-	 Mono<TypeCustomer>  add(TypeCustomer typeCustomer);
-	 Flux<TypeCustomer>gelAll();
+	 Mono<TypeCustomer>  addTypeCustomer(TypeCustomer typeCustomer);
+	 Flux<TypeCustomer>gelAllTypeCustomer();
 	
-	 Flux<TypeCustomer>buscar(String idCustomer);
+	 Flux<TypeCustomer>findAllByIdCustomer(String idCustomer);
 	 
 	 
 }

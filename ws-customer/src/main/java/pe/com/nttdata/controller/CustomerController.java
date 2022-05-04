@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import pe.com.nttdata.model.Customer;
 import pe.com.nttdata.service.CustomerServiceInf;
+import pe.com.nttdata.util.Constantes;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping(Constantes.URL_PATH_REST)
 public class CustomerController {
 	@Autowired // Inyeccion de dependencias
 	private CustomerServiceInf customerService;
@@ -59,5 +60,7 @@ public class CustomerController {
 		return this.customerService.findById(id)
 				.flatMap(c->this.customerService.delete(c));
 	}
+	
+	
 
 }

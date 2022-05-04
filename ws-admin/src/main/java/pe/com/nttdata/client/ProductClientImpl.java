@@ -30,12 +30,12 @@ public class ProductClientImpl implements ProductClientInf{
 	
 	@Override
 	public Product  findByIdCustomer(String id) {
-		return this.restTemplate.getForObject("http://localhost:8084/api/v1/products/findByIdCustomer/"+id, Product.class);
+		return this.restTemplate.getForObject("http://localhost:8084/products/findByIdCustomer/"+id, Product.class);
 	}
 	
 	@Override
 	public Product findById(String id) {
-		return this.restTemplate.getForObject("http://localhost:8084/api/v1/products/"+id, Product.class);
+		return this.restTemplate.getForObject("http://localhost:8084/products/"+id, Product.class);
 	}
 	
 	@Override
@@ -45,7 +45,7 @@ public class ProductClientImpl implements ProductClientInf{
 		ObjectMapper objectMapper = new ObjectMapper();
 		String responseJson = null;
 
-		String url = "http://localhost:8084/api/v1/products/save";
+		String url = "http://localhost:8084/products/save";
 		Integer timeoutConexion= 2;
 		Integer timeoutEjecucion = 3;
 
@@ -56,8 +56,8 @@ public class ProductClientImpl implements ProductClientInf{
 	
 			
 
-			log.info("URL para modificar orden motor de pagos: " + url);
-			log.info("Tipo: " + HttpMethod.POST);
+			log.info("URL product: {}",  url);
+			log.info("Tipo: {}", HttpMethod.POST);
 			Gson gson = new Gson();
 			String requesGson= gson.toJson(product);
 			log.info("reques: {}",requesGson);
@@ -104,7 +104,7 @@ public class ProductClientImpl implements ProductClientInf{
 	
 	@Override
 	public List<TypeProduct> getAllTypeProduct() {
-		return this.restTemplate.getForObject("http://localhost:8086/api/v1/type-products", List.class);
+		return this.restTemplate.getForObject("http://localhost:8086/type-products", List.class);
 	}
 
 	

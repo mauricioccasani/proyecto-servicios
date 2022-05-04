@@ -17,7 +17,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/api/v1/type-products")
+@RequestMapping("/type-products")
 @Log4j2
 public class TypeProductController {
 	@Autowired
@@ -26,7 +26,7 @@ public class TypeProductController {
 	@PostMapping
 	public Mono<TypeProduct> create(@RequestBody TypeProduct typeProduct) {
 		log.info("Reques: {}",typeProduct.toString());
-		return this.typeProductService.save(typeProduct);
+		return this.typeProductService.save(Mono.just(typeProduct));
 	}
 
 	@GetMapping
@@ -46,7 +46,7 @@ public class TypeProductController {
 			p.setType(typeProduct.getType());
 			p.setAccount(typeProduct.getAccount());
 			p.setStatus(typeProduct.isStatus());
-			return this.typeProductService.save(p);
+			return this.typeProductService.save(Mono.just(p));
 		});
 	}
 
