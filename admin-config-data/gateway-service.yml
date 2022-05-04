@@ -19,8 +19,11 @@ spring:
       routes:
         - id: ws-historico
           uri: http://localhost:8087/historicos
-#          uri: lb//ws-producto
           predicates:
             - Path=/historicos/**
+        - id: ws-customer
+          uri: http://localhost:8083/customers
+          predicates:
+            - Path=/customers/**   
   #application:
   #  name: registry-service          
