@@ -5,7 +5,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface TypeCustomerServiceInf {
-	 Mono<TypeCustomer>  addTypeCustomer(TypeCustomer typeCustomer);
+	Mono<TypeCustomer> addTypeCustomer(Mono<TypeCustomer> typeCustomer);
 	 Flux<TypeCustomer>gelAllTypeCustomer();
 	
 	 Flux<TypeCustomer>findAllByIdCustomer(String idCustomer);

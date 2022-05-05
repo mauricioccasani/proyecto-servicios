@@ -27,7 +27,7 @@ public class TypeCustomerHandler {
 		var typeProduct=request.bodyToMono(TypeCustomer.class);
 		return typeProduct.flatMap(t->ServerResponse.status(HttpStatus.CREATED)
 				.contentType(MediaType.TEXT_EVENT_STREAM)
-				.body(this.typeCustomerService.addTypeCustomer(t),TypeCustomer.class));
+				.body(this.typeCustomerService.addTypeCustomer(Mono.just(t)),TypeCustomer.class));
 	}
 	
 

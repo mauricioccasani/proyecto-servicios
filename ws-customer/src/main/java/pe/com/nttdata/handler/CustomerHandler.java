@@ -35,7 +35,7 @@ public class CustomerHandler {
 		var typeCustomer=request.bodyToMono(Customer.class);
 		return typeCustomer.flatMap(c->ServerResponse.status(HttpStatus.CREATED)
 				.contentType(MediaType.TEXT_EVENT_STREAM)
-				.body(this.customerService.save(c),Customer.class));
+				.body(this.customerService.save(Mono.just(c)),Customer.class));
 	}
 	
 	public Mono<ServerResponse> getAllCustomer(ServerRequest request) {

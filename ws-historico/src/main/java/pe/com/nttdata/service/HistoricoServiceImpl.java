@@ -13,9 +13,9 @@ public class HistoricoServiceImpl implements  HistoricoServiceInf {
 	private HistoricoRepository historicoRepository;
 
 	@Override
-	public Mono<Historico> save(Historico historico) {
+	public Mono<Historico> save(Mono<Historico> historico) {
 		
-		return this.historicoRepository.save(historico);
+		return historico.flatMap(historicoRepository::insert);
 	}
 
 	@Override

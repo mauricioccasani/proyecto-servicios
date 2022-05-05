@@ -13,8 +13,8 @@ public class TypeCustomerServiceImpl implements  TypeCustomerServiceInf {
 	private TypeCustomerRepository repository;
 
 	@Override
-	public Mono<TypeCustomer> addTypeCustomer(TypeCustomer typeCustomer) {
-		return this.repository.save(typeCustomer);
+	public Mono<TypeCustomer> addTypeCustomer(Mono<TypeCustomer> typeCustomer) {
+		return typeCustomer.flatMap(repository::insert);
 	}
 
 	@Override
@@ -29,7 +29,5 @@ public class TypeCustomerServiceImpl implements  TypeCustomerServiceInf {
 		return this.repository.findAllByIdCustomer(idCustomer)
 				.filter(c->c.getStatus().trim().equals("activo"));
 	}
-
-
 
 }

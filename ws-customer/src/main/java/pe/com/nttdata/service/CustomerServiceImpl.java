@@ -13,9 +13,8 @@ public class CustomerServiceImpl implements  CustomerServiceInf {
 	private CustomerRepository repository;
 
 	@Override
-	public Mono<Customer> save(Customer customer) {
-		
-		return this.repository.save(customer);
+	public Mono<Customer> save(Mono<Customer> customer) {
+		return customer.flatMap(repository::insert);
 	}
 
 	@Override
@@ -32,9 +31,4 @@ public class CustomerServiceImpl implements  CustomerServiceInf {
 	public Mono<Void> delete(Customer producto) {
 		return this.repository.delete(producto);
 	}
-
-	
-
-
-
 }

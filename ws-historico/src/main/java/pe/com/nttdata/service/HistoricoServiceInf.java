@@ -5,7 +5,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface HistoricoServiceInf {
-	public Mono<Historico>  save(Historico historico);
+	public Mono<Historico> save(Mono<Historico> historico);
 	public Flux<Historico>findAll();
 	public Mono<Historico>  findById(String id);
 	public Mono<Void> delete(Historico producto);
