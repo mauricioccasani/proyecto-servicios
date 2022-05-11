@@ -1,6 +1,7 @@
 package pe.com.nttdata.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,7 @@ public class HistoricoController {
 	}
 
 	@GetMapping("/{id}")
+	@Cacheable(value = "customers", key = "#id")
 	@ResponseBody
 	public Mono<Historico> findByIds(@PathVariable String id) {
 		return historicoService.findById(id);

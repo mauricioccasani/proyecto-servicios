@@ -1,6 +1,7 @@
 package pe.com.nttdata.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +32,7 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/{id}")
+	@Cacheable(value = "customers", key = "#id")
 	@ResponseBody
 	// Buscar por id
 	public Mono<Customer> findByIds(@PathVariable String id) {

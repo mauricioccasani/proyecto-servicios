@@ -1,6 +1,7 @@
 package pe.com.nttdata.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +36,7 @@ public class TypeProductController {
 	}
 
 	@GetMapping("/{id}")
+	@Cacheable(value = "customers", key = "#id")
 	public Mono<TypeProduct> findByIds(@PathVariable String id) {
 		return typeProductService.findById(id);
 	}

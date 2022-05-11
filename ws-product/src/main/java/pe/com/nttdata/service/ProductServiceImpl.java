@@ -1,6 +1,7 @@
 package pe.com.nttdata.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import pe.com.nttdata.model.Product;
@@ -24,6 +25,7 @@ public class ProductServiceImpl implements  ProductServiceInf {
 	}
 
 	@Override
+	@Cacheable(value = "customerCache")
 	public Mono<Product> findById(String id) {
 		return this.productRepository.findById(id);
 	}
